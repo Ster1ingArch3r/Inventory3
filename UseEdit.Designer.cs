@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UseEdit));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,10 +53,9 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -124,6 +124,16 @@
             this.tableLayoutPanel1.SetRowSpan(this.panel1, 2);
             this.panel1.Size = new System.Drawing.Size(322, 80);
             this.panel1.TabIndex = 0;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Stencil", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(26, 17);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(279, 44);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Edit/Use Item";
             // 
             // label1
             // 
@@ -202,7 +212,7 @@
             "Processors",
             "Storage ",
             "Video Cards"});
-            this.comboBox1.Location = new System.Drawing.Point(131, 97);
+            this.comboBox1.Location = new System.Drawing.Point(131, 93);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(194, 28);
             this.comboBox1.TabIndex = 7;
@@ -257,6 +267,7 @@
             this.button1.TabIndex = 13;
             this.button1.Text = "Update Inventory";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label7
             // 
@@ -324,6 +335,7 @@
             this.button2.TabIndex = 22;
             this.button2.Text = "Exit Edits";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel2
             // 
@@ -336,11 +348,21 @@
             this.panel2.Size = new System.Drawing.Size(322, 57);
             this.panel2.TabIndex = 23;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Stencil", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(74, 11);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(166, 34);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "User Info ";
+            // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(131, 504);
+            this.dateTimePicker1.Location = new System.Drawing.Point(131, 501);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(194, 26);
             this.dateTimePicker1.TabIndex = 24;
@@ -353,26 +375,6 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(194, 26);
             this.textBox8.TabIndex = 25;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Stencil", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(74, 11);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(166, 34);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "User Info ";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Stencil", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(26, 17);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(279, 44);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Edit/Use Item";
             // 
             // UseEdit
             // 

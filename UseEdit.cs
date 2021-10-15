@@ -22,6 +22,32 @@ namespace TCIS_Inventory3
             try
             {
                 MySqlConnection conn = new MySqlConnection(connection);
+                string getItem = $"Select * from inventory where id = @id";
+                conn.Open();
+                MySqlCommand command = new MySqlCommand(getItem, conn);
+                command.Parameters.AddWithValue("@id", ID);
+                command.Prepare();
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    comboBox1.Text = reader.GetValue(1).ToString();
+                    textBox1.Text = reader.GetValue(2).ToString();
+                    textBox2.Text = reader.GetValue(3).ToString();
+                    textBox3.Text = reader.GetValue(4).ToString();
+                    textBox4.Text = reader.GetValue(5).ToString();
+                    textBox5.Text = reader.GetValue(6).ToString();
+
+                }
+                conn.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message,"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            try
+            {
+                MySqlConnection conn = new MySqlConnection(connection);
                 string getUser = "Select Current_User();";
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(getUser, conn);
@@ -31,19 +57,20 @@ namespace TCIS_Inventory3
                     setTextBox = read.GetString(0);
                 }
                 conn.Close();
-                textBox1.Text = setTextBox;
+                textBox6.Text = setTextBox;
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show(ex.Message, "Title", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
+
         }
         private void UpdateItem()
         {
             try
             {
-                string update = "Update inventory Set category = @category, decript = @description, quantity = @quantity, cost = @cost, reorder = @reorder," +
-                    " shelf = @shelf Where id = @id;";
+                string update = "Update inventory Set category = @category, descript = @description, quantity = @quantity, cost = @cost, reorder = @reorder, shelf = @shelf Where id = @id;";
                 MySqlConnection conn = new MySqlConnection(connection);
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(update, conn);
@@ -64,7 +91,47 @@ namespace TCIS_Inventory3
         }
         private void LogEdit()
         {
-            string logChange = "Insert into newinventory.changes";
+            try
+            {
+                string logChange = "Insert into changes(username, itemchanged, datechanged, ticket) values(username = @username, itemchanged = @item, datechanged = @date, ticket = @ticket);";
+                MySqlConnection conn = new MySqlConnection();
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(logChange, conn);
+                cmd.Parameters.AddWithValue("@username", textBox6.Text);
+                cmd.Parameters.AddWithValue("@item", textBox7.Text);
+                cmd.Parameters.AddWithValue("@date", dateTimePicker1.Text);
+                cmd.Parameters.AddWithValue("@ticket", Convert.ToInt32(textBox8.Text));
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                UpdateItem();
+                LogEdit();
+                MessageBox.Show("Inventory Updated!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

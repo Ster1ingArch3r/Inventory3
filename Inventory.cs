@@ -163,7 +163,7 @@ namespace TCIS_Inventory3
                         conn.Close();   
 
                         conn.Open();
-                        string delete = $"Delete from newinventory.inventory where ID = {ID}";
+                        string delete = $"Delete from inventory where ID = {ID}";
                         MySqlCommand cmd = new MySqlCommand(delete, conn);
                         cmd.ExecuteNonQuery();
                         conn.Close();
