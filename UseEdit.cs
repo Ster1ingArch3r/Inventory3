@@ -77,7 +77,7 @@ namespace TCIS_Inventory3
                 cmd.Parameters.AddWithValue("@category", comboBox1.Text);
                 cmd.Parameters.AddWithValue("@description", textBox1.Text);
                 cmd.Parameters.AddWithValue("@quantity", Convert.ToInt32(textBox2.Text));
-                cmd.Parameters.AddWithValue("@cost", Convert.ToInt32(textBox3.Text));
+                cmd.Parameters.AddWithValue("@cost", Convert.ToDouble(textBox3.Text));
                 cmd.Parameters.AddWithValue("@reorder", Convert.ToInt32(textBox4.Text));
                 cmd.Parameters.AddWithValue("@shelf", textBox5.Text);
                 cmd.Parameters.AddWithValue("@id", ID);
@@ -94,7 +94,7 @@ namespace TCIS_Inventory3
             try
             {
                 string logChange = "Insert into changes(username, itemchanged, datechanged, ticket) values(username = @username, itemchanged = @item, datechanged = @date, ticket = @ticket);";
-                MySqlConnection conn = new MySqlConnection();
+                MySqlConnection conn = new MySqlConnection(connection);
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(logChange, conn);
                 cmd.Parameters.AddWithValue("@username", textBox6.Text);
