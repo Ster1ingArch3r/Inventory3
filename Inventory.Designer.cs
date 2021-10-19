@@ -146,7 +146,7 @@
             // addUserToolStripMenuItem
             // 
             this.addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
-            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addUserToolStripMenuItem.Text = "AddUser";
             // 
             // toolStripMenuItem2
@@ -155,7 +155,7 @@
             this.toolStripMenuItem3,
             this.totalValueReportToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(128, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem2.Text = "Reports";
             // 
             // toolStripMenuItem3
@@ -170,11 +170,12 @@
             this.totalValueReportToolStripMenuItem.Name = "totalValueReportToolStripMenuItem";
             this.totalValueReportToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.totalValueReportToolStripMenuItem.Text = "Total Value Report";
+            this.totalValueReportToolStripMenuItem.Click += new System.EventHandler(this.totalValueReportToolStripMenuItem_Click);
             // 
             // exirtToolStripMenuItem
             // 
             this.exirtToolStripMenuItem.Name = "exirtToolStripMenuItem";
-            this.exirtToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.exirtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exirtToolStripMenuItem.Text = "Exit";
             this.exirtToolStripMenuItem.Click += new System.EventHandler(this.exirtToolStripMenuItem_Click);
             // 
@@ -190,14 +191,14 @@
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(115, 22);
             this.aboutToolStripMenuItem1.Text = "About";
             this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
             // 
             // bonusToolStripMenuItem
             // 
             this.bonusToolStripMenuItem.Name = "bonusToolStripMenuItem";
-            this.bonusToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bonusToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.bonusToolStripMenuItem.Text = "Bonus!";
             this.bonusToolStripMenuItem.Click += new System.EventHandler(this.bonusToolStripMenuItem_Click);
             // 

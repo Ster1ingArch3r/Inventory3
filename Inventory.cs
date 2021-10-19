@@ -283,5 +283,10 @@ namespace TCIS_Inventory3
             Bonus bonus= new Bonus();
             bonus.Show();
         }
+
+        private void totalValueReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
