@@ -71,7 +71,7 @@ namespace TCIS_Inventory3
                 cmd.Parameters.AddWithValue("@Quantity", Convert.ToInt32(textBox2.Text));
                 cmd.Parameters.AddWithValue("@Cost", Convert.ToDouble(textBox3.Text));
                 cmd.Parameters.AddWithValue("@Reorder", Convert.ToInt32(textBox4.Text));
-                cmd.Parameters.AddWithValue("@Shelf", textBox5.Text);
+                cmd.Parameters.AddWithValue("@Shelf", comboBox2.Text + comboBox3.Text);
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
                 
@@ -86,8 +86,8 @@ namespace TCIS_Inventory3
                 textBox2.Text = "";
                 textBox3.Text = "";
                 textBox4.Text = "";
-                textBox5.Text = "";
-                
+                comboBox2.Text = "";
+                comboBox3.Text = "";
                 
             }
             catch(MySqlException ex)

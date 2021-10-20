@@ -12,7 +12,24 @@ namespace TCIS_Inventory3
             InitializeComponent();
             connection = a;
         }
-
+        private void setAudit()
+        {
+            try
+            {
+                string sql = "Truncate test_audit.inventory; Insert into test_audit.inventory select * from inventory;";
+                MySqlConnection conn = new MySqlConnection(connection);
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Environment.Exit(0);
@@ -35,6 +52,20 @@ namespace TCIS_Inventory3
 
         private void Audit_Load(object sender, EventArgs e)
         {
+            label1.Text = DateTime.Now.ToString();
+            if(DateTime.Now.Day == 28 && DateTime.Now.Month == 2)
+            {
+                setAudit();
+            }
+            else if(DateTime.Now.Day == 30 || DateTime.Now.Day == 31)
+            {
+                setAudit();
+            }
+            else
+            {
+                button1.Enabled = true;
+            }
+
 
             dataGridView1.Rows.Clear();
             dataGridView2.Rows.Clear();
@@ -89,6 +120,11 @@ namespace TCIS_Inventory3
             {
                 MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            setAudit();
         }
     }
 }
