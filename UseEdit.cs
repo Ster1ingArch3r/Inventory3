@@ -28,7 +28,7 @@ namespace TCIS_Inventory3
                 command.Parameters.AddWithValue("@id", ID);
                 command.Prepare();
                 MySqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
+                if (reader.Read())
                 {
                     comboBox1.Text = reader.GetValue(1).ToString();
                     textBox1.Text = reader.GetValue(2).ToString();

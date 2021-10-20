@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 
 namespace TCIS_Inventory3
 {
     public partial class Audit : Form
     {
-        public Audit()
+        private string connection;
+        public Audit(string a)
         {
             InitializeComponent();
+            connection = a;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -37,7 +33,62 @@ namespace TCIS_Inventory3
             bonus.Show();
         }
 
+        private void Audit_Load(object sender, EventArgs e)
+        {
 
+            dataGridView1.Rows.Clear();
+            dataGridView2.Rows.Clear();
+            try
+            {
+                MySqlConnection conn = new MySqlConnection(connection);
+                conn.Open();
+                string show = "Select * from inventory;";
+                using (MySqlCommand cmd = new MySqlCommand(show, conn))
+                {
+                    using(MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            dataGridView1.Rows.Add(new object[]
+                            {
+                                reader.GetValue(0),
+                                reader.GetValue(1),
+                                reader.GetValue(2),
+                                reader.GetValue(3),
+                                reader.GetValue(4),
+                                reader.GetValue(5),
+                                reader.GetValue(6)
+                            });
+                        }
+                    }
+                } 
+                string show2 = "Select * from test_audit.inventory;";
+                using(MySqlCommand command = new MySqlCommand(show2, conn))
+                {
+                    using(MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            dataGridView2.Rows.Add(new object[]
+                            {
+                                reader.GetValue(0),
+                                reader.GetValue(1),
+                                reader.GetValue(2),
+                                reader.GetValue(3),
+                                reader.GetValue(4),
+                                reader.GetValue(5),
+                                reader.GetValue(6)
+                            });
+                        }
+                    }
+                }
 
+                conn.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

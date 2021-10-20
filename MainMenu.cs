@@ -61,5 +61,11 @@ namespace TCIS_Inventory3
         {
 
         }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            Audit audit = new Audit(sql);
+            audit.Show();
+        }
     }
 }
