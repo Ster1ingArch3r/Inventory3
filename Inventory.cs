@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 using System.IO;
 using System.Text;
+using System.Collections.Generic;
 
 namespace TCIS_Inventory3
 {
@@ -286,7 +287,23 @@ namespace TCIS_Inventory3
 
         private void totalValueReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
+                
+            string totalValue = "Select Sum(cost * quantity) From Inventory;";
+            MySqlConnection conn = new MySqlConnection(connection);
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand(totalValue, conn);
+            MySqlDataReader read = cmd.ExecuteReader();
+            double t = 0;
 
+            if (read.Read())
+            {
+                {
+                    t = read.GetDouble(0);              
+                }
+                MessageBox.Show(Convert.ToString(t), "Total Value", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            conn.Close();
+            }
         }
     }
 }
