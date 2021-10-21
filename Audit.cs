@@ -126,5 +126,16 @@ namespace TCIS_Inventory3
         {
             setAudit();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ViewEdits viewEdits = new ViewEdits(connection);
+            viewEdits.Show();   
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

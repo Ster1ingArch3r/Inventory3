@@ -19,6 +19,10 @@ namespace TCIS_Inventory3
 
         private void UseEdit_Load(object sender, EventArgs e)
         {
+            DateTime dateTime = DateTime.Now;
+            dateTime.ToShortDateString();
+            dateTimePicker1.Text = dateTime.ToString();
+
             try
             {
                 MySqlConnection conn = new MySqlConnection(connection);
@@ -93,7 +97,7 @@ namespace TCIS_Inventory3
         {
             try
             {
-                string logChange = "Insert into changes(username, itemchanged, datechanged, ticket) values(username = @username, itemchanged = @item, datechanged = @date, ticket = @ticket);";
+                string logChange = "Insert into changes(username, itemchanged, datechanged, ticket) values(@username, @item, @date, @ticket);";
                 MySqlConnection conn = new MySqlConnection(connection);
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(logChange, conn);
