@@ -137,5 +137,12 @@ namespace TCIS_Inventory3
         {
             this.Close();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int ID = Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value);
+            UseEdit useEdit = new UseEdit(connection, ID);
+            useEdit.Show(); 
+        }
     }
 }

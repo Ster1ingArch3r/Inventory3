@@ -14,6 +14,7 @@ namespace TCIS_Inventory3
             connection = a;
             ID = b;
         }
+
         string setTextBox = "";
         //Get user info. Set username to info
 
