@@ -3,7 +3,7 @@ using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 using System.IO;
 using System.Text;
-using System.Collections.Generic;
+
 
 namespace TCIS_Inventory3
 {
