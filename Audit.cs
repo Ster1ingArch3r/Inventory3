@@ -37,10 +37,11 @@ namespace TCIS_Inventory3
 
         private void abutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string version = "0.8.2";
             const string title = "About Program";
-            const string message = "This program was designed and developed by Matt Brown\n" +
-                "for the exclusive use by Tuscola County Information Systems.\n" +
-                "                                 Version 1.0.0.3 ";
+            string message = $"This program was designed and developed by Matt Brown\n" +
+                $"for the exclusive use by Tuscola County Information Systems.\n" +
+                $"                                 {version} ";
             MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
