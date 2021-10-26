@@ -49,5 +49,10 @@ namespace TCIS_Inventory3
         {
             System.Environment.Exit(0);
         }
+
+        //private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+
+        //}
     }
 }

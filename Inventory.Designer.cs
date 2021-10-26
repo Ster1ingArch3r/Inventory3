@@ -71,6 +71,7 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -139,6 +140,7 @@
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
+            this.toolStripMenuItem4,
             this.exirtToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(41, 24);
@@ -150,27 +152,27 @@
             this.toolStripMenuItem3,
             this.totalValueReportToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(122, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem2.Text = "Reports";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(172, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem3.Text = "Inventory Report";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // totalValueReportToolStripMenuItem
             // 
             this.totalValueReportToolStripMenuItem.Name = "totalValueReportToolStripMenuItem";
-            this.totalValueReportToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.totalValueReportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.totalValueReportToolStripMenuItem.Text = "Total Value ";
             this.totalValueReportToolStripMenuItem.Click += new System.EventHandler(this.totalValueReportToolStripMenuItem_Click);
             // 
             // exirtToolStripMenuItem
             // 
             this.exirtToolStripMenuItem.Name = "exirtToolStripMenuItem";
-            this.exirtToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.exirtToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exirtToolStripMenuItem.Text = "Exit";
             this.exirtToolStripMenuItem.Click += new System.EventHandler(this.exirtToolStripMenuItem_Click);
             // 
@@ -563,6 +565,13 @@
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem4.Text = "SpiceWorks";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
+            // 
             // Inventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -637,5 +646,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
     }
 }
