@@ -11,11 +11,7 @@ namespace TCIS_Inventory3
             InitializeComponent();
         }
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
-            //webBrowser1.Navigate(@"");
-            
-        }
+        
 
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
