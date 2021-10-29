@@ -36,7 +36,8 @@ namespace TCIS_Inventory3
                         read.GetValue(3),
                         read.GetValue(4),
                         read.GetValue(5),
-                        read.GetValue(6)
+                        read.GetValue(6),
+                        read.GetValue(7)
                     });
 
                 }
@@ -61,7 +62,7 @@ namespace TCIS_Inventory3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string insert = "INSERT INTO inventory(Category, Descript, Quantity, Cost, Reorder, Shelf) values(@Category, @Description, @Quantity, @Cost, @Reorder, @Shelf);";
+            string insert = "INSERT INTO inventory(Category, Descript, Asset_Tag, Quantity, Cost, Reorder, Shelf) values(@Category, @Description, @Asset, @Quantity, @Cost, @Reorder, @Shelf);";
             try
             {
                 MySqlConnection conn = new MySqlConnection(connection);
@@ -69,6 +70,7 @@ namespace TCIS_Inventory3
                 MySqlCommand cmd = new MySqlCommand(insert, conn);
                 cmd.Parameters.AddWithValue("@Category", comboBox1.Text);
                 cmd.Parameters.AddWithValue("@Description", textBox1.Text);
+                cmd.Parameters.AddWithValue("@Asset", Convert.ToInt32(textBox5.Text));
                 cmd.Parameters.AddWithValue("@Quantity", Convert.ToInt32(textBox2.Text));
                 cmd.Parameters.AddWithValue("@Cost", Convert.ToDouble(textBox3.Text));
                 cmd.Parameters.AddWithValue("@Reorder", Convert.ToInt32(textBox4.Text));
@@ -87,6 +89,7 @@ namespace TCIS_Inventory3
                 textBox2.Text = "";
                 textBox3.Text = "";
                 textBox4.Text = "";
+                textBox5.Text = "";
                 comboBox2.Text = "";
                 comboBox3.Text = "";
                 
@@ -200,7 +203,8 @@ namespace TCIS_Inventory3
                         read.GetValue(3),
                         read.GetValue(4),
                         read.GetValue(5),
-                        read.GetValue(6)
+                        read.GetValue(6),
+                        read.GetValue(7)
                     });
                     
                 }

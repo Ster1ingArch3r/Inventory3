@@ -89,7 +89,8 @@ namespace TCIS_Inventory3
                                 reader.GetValue(3),
                                 reader.GetValue(4),
                                 reader.GetValue(5),
-                                reader.GetValue(6)
+                                reader.GetValue(6),
+                                reader.GetValue(7)
                             });
                         }
                     }
@@ -109,7 +110,8 @@ namespace TCIS_Inventory3
                                 reader.GetValue(3),
                                 reader.GetValue(4),
                                 reader.GetValue(5),
-                                reader.GetValue(6)
+                                reader.GetValue(6),
+                                reader.GetValue(7)
                             });
                         }
                     }

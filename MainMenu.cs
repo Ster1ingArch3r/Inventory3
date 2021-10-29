@@ -39,8 +39,11 @@ namespace TCIS_Inventory3
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            Hide();
             Inventory inventory = new Inventory(sql);
-            inventory.Show();
+            inventory.ShowDialog();
+            inventory = null;
+            Show();
         }
 
         private void ExitToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -65,8 +68,11 @@ namespace TCIS_Inventory3
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            Hide();
             Audit audit = new Audit(sql);
-            audit.Show();
+            audit.ShowDialog();
+            audit = null;
+            Show();
         }
     }
 }
