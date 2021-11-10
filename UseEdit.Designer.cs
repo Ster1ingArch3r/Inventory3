@@ -217,7 +217,7 @@
             "Processors",
             "Storage ",
             "Video Cards"});
-            this.comboBox1.Location = new System.Drawing.Point(131, 86);
+            this.comboBox1.Location = new System.Drawing.Point(131, 89);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(194, 28);
             this.comboBox1.TabIndex = 7;

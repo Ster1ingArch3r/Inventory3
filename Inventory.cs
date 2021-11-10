@@ -65,40 +65,47 @@ namespace TCIS_Inventory3
             string insert = "INSERT INTO inventory(Category, Descript, Asset_Tag, Quantity, Cost, Reorder, Shelf) values(@Category, @Description, @Asset, @Quantity, @Cost, @Reorder, @Shelf);";
             try
             {
-                MySqlConnection conn = new MySqlConnection(connection);
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand(insert, conn);
-                cmd.Parameters.AddWithValue("@Category", comboBox1.Text);
-                cmd.Parameters.AddWithValue("@Description", textBox1.Text);
-                cmd.Parameters.AddWithValue("@Asset", Convert.ToInt32(textBox5.Text));
-                cmd.Parameters.AddWithValue("@Quantity", Convert.ToInt32(textBox2.Text));
-                cmd.Parameters.AddWithValue("@Cost", Convert.ToDouble(textBox3.Text));
-                cmd.Parameters.AddWithValue("@Reorder", Convert.ToInt32(textBox4.Text));
-                cmd.Parameters.AddWithValue("@Shelf", comboBox2.Text + comboBox3.Text);
-                cmd.Prepare();
-                cmd.ExecuteNonQuery();
-                
-                conn.Close();
+                try
+                {
+                    MySqlConnection conn = new MySqlConnection(connection);
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(insert, conn);
+                    cmd.Parameters.AddWithValue("@Category", comboBox1.Text);
+                    cmd.Parameters.AddWithValue("@Description", textBox1.Text);
+                    cmd.Parameters.AddWithValue("@Asset", Convert.ToInt32(textBox5.Text));
+                    cmd.Parameters.AddWithValue("@Quantity", Convert.ToInt32(textBox2.Text));
+                    cmd.Parameters.AddWithValue("@Cost", Convert.ToDouble(textBox3.Text));
+                    cmd.Parameters.AddWithValue("@Reorder", Convert.ToInt32(textBox4.Text));
+                    cmd.Parameters.AddWithValue("@Shelf", comboBox2.Text + comboBox3.Text);
+                    cmd.Prepare();
+                    cmd.ExecuteNonQuery();
 
-                const string message1= "Item Added Successfully!";
-                const string title1 = "Success!";
-                MessageBox.Show(message1, title1, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-                comboBox1.Text = "";
-                textBox1.Text = "";
-                textBox2.Text = "";
-                textBox3.Text = "";
-                textBox4.Text = "";
-                textBox5.Text = "";
-                comboBox2.Text = "";
-                comboBox3.Text = "";
-                
+                    conn.Close();
+
+                    const string message1 = "Item Added Successfully!";
+                    const string title1 = "Success!";
+                    MessageBox.Show(message1, title1, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    comboBox1.Text = "";
+                    textBox1.Text = "";
+                    textBox2.Text = "";
+                    textBox3.Text = "";
+                    textBox4.Text = "";
+                    textBox5.Text = "";
+                    comboBox2.Text = "";
+                    comboBox3.Text = "";
+
+                }
+                catch (MySqlException ex)
+                {
+                    string message2 = ex.Message;
+                    const string title2 = "Error!";
+                    MessageBox.Show(message2, title2, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch(MySqlException ex)
+            catch (Exception ex)
             {
-                string message2 = ex.Message;
-                const string title2 = "Error!";
-                MessageBox.Show(message2, title2, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
