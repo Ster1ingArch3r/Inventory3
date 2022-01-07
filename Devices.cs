@@ -167,7 +167,7 @@ namespace TCIS_Inventory3
         }
         private void Serial(string c)
         {
-            string checkSer = "SELECT * FROM devices WHERE serial LIKE @Serial;";
+            string checkSer = "SELECT * FROM devices WHERE serial_number LIKE @Serial;";
             using (MySqlConnection serConn = new MySqlConnection(connection))
             {
                 serConn.Open();
@@ -183,7 +183,7 @@ namespace TCIS_Inventory3
                             using (MySqlConnection snconn = new MySqlConnection(connection))
                             {
                                 snconn.Open();
-                                string snGrab = "SELECT * FROM devices where serial = @Serial;";
+                                string snGrab = "SELECT * FROM devices where serial_number = @Serial;";
                                 using (MySqlCommand cmdc = new MySqlCommand(snGrab, snconn))
                                 {
                                     cmdc.Parameters.AddWithValue("@Serial", c);
@@ -341,6 +341,16 @@ namespace TCIS_Inventory3
                 checkBox2.Checked = false;
                 checkBox3.Checked = false;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
