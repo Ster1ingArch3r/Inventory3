@@ -88,7 +88,7 @@
             this.Name = "Bonus";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bonus";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Bonus_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Bonus_FormClosed);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

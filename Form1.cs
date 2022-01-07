@@ -33,8 +33,11 @@ namespace TCIS_Inventory3
                 textBox3.Text = "";
                 comboBox1.Text = "";
 
+                Hide();
                 MainMenu mm = new MainMenu(sql);
-                mm.Show();
+                mm.ShowDialog();
+                mm = null;
+                Show();
 
 
 

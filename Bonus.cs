@@ -23,7 +23,7 @@ namespace TCIS_Inventory3
             this.webBrowser1.DocumentText = string.Format(embed, url);
         }
 
-        private void Bonus_FormClosed(object sender, FormClosedEventArgs e)
+        private void Bonus_FormClosed(object sender, FormClosingEventArgs e)
         {
             this.Dispose();
         }

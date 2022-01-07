@@ -3,18 +3,30 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TCIS Inventory3", "TCIS Inventory3.csproj", "{FAFEBEC3-2E7A-4BF8-B1B9-286EE6A08EA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TCIS Inventory3", "TCIS Inventory3.csproj", "{FAFEBEC3-2E7A-4BF8-B1B9-286EE6A08EA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{FAFEBEC3-2E7A-4BF8-B1B9-286EE6A08EA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FAFEBEC3-2E7A-4BF8-B1B9-286EE6A08EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAFEBEC3-2E7A-4BF8-B1B9-286EE6A08EA3}.Debug|x64.ActiveCfg = Debug|x64
+		{FAFEBEC3-2E7A-4BF8-B1B9-286EE6A08EA3}.Debug|x64.Build.0 = Debug|x64
+		{FAFEBEC3-2E7A-4BF8-B1B9-286EE6A08EA3}.Debug|x86.ActiveCfg = Release|x86
+		{FAFEBEC3-2E7A-4BF8-B1B9-286EE6A08EA3}.Debug|x86.Build.0 = Release|x86
 		{FAFEBEC3-2E7A-4BF8-B1B9-286EE6A08EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAFEBEC3-2E7A-4BF8-B1B9-286EE6A08EA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAFEBEC3-2E7A-4BF8-B1B9-286EE6A08EA3}.Release|x64.ActiveCfg = Release|Any CPU
+		{FAFEBEC3-2E7A-4BF8-B1B9-286EE6A08EA3}.Release|x64.Build.0 = Release|Any CPU
+		{FAFEBEC3-2E7A-4BF8-B1B9-286EE6A08EA3}.Release|x86.ActiveCfg = Release|x86
+		{FAFEBEC3-2E7A-4BF8-B1B9-286EE6A08EA3}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

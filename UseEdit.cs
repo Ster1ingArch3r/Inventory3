@@ -37,10 +37,12 @@ namespace TCIS_Inventory3
                 {
                     comboBox1.Text = reader.GetValue(1).ToString();
                     textBox1.Text = reader.GetValue(2).ToString();
-                    textBox2.Text = reader.GetValue(3).ToString();
-                    textBox3.Text = reader.GetValue(4).ToString();
-                    textBox4.Text = reader.GetValue(5).ToString();
-                    textBox5.Text = reader.GetValue(6).ToString();
+                    textBox9.Text = reader.GetValue(3).ToString();
+                    textBox2.Text = reader.GetValue(4).ToString();
+                    textBox3.Text = reader.GetValue(5).ToString();
+                    textBox4.Text = reader.GetValue(6).ToString();
+                    textBox5.Text = reader.GetValue(7).ToString();
+                    
 
                 }
                 conn.Close();
@@ -75,12 +77,13 @@ namespace TCIS_Inventory3
         {
             try
             {
-                string update = "Update inventory Set category = @category, descript = @description, quantity = @quantity, cost = @cost, reorder = @reorder, shelf = @shelf Where id = @id;";
+                string update = "Update inventory Set category = @category, descript = @description, asset_tag =@asset, quantity = @quantity, cost = @cost, reorder = @reorder, shelf = @shelf Where id = @id;";
                 MySqlConnection conn = new MySqlConnection(connection);
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(update, conn);
                 cmd.Parameters.AddWithValue("@category", comboBox1.Text);
                 cmd.Parameters.AddWithValue("@description", textBox1.Text);
+                cmd.Parameters.AddWithValue("@Asset", Convert.ToInt32(textBox9.Text));
                 cmd.Parameters.AddWithValue("@quantity", Convert.ToInt32(textBox2.Text));
                 cmd.Parameters.AddWithValue("@cost", Convert.ToDouble(textBox3.Text));
                 cmd.Parameters.AddWithValue("@reorder", Convert.ToInt32(textBox4.Text));

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TCIS_Inventory3
@@ -39,8 +32,11 @@ namespace TCIS_Inventory3
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            Hide();
             Inventory inventory = new Inventory(sql);
-            inventory.Show();
+            inventory.ShowDialog();
+            inventory = null;
+            Show();
         }
 
         private void ExitToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -65,8 +61,20 @@ namespace TCIS_Inventory3
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            Hide();
             Audit audit = new Audit(sql);
-            audit.Show();
+            audit.ShowDialog();
+            audit = null;
+            Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Hide();
+            Devices devices = new Devices(sql);
+            devices.ShowDialog();
+            devices = null;
+            Show();
         }
     }
 }
