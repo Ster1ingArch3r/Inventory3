@@ -67,5 +67,14 @@ namespace TCIS_Inventory3
             audit = null;
             Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Hide();
+            Devices devices = new Devices(sql);
+            devices.ShowDialog();
+            devices = null;
+            Show();
+        }
     }
 }

@@ -43,6 +43,7 @@
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button4 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -86,9 +87,10 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.Button1, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.Button2, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.Button3, 0, 5);
+            this.tableLayoutPanel2.Controls.Add(this.button4, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.Button1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.Button2, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.Button3, 0, 6);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -101,6 +103,8 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(486, 329);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
@@ -109,7 +113,7 @@
             this.tableLayoutPanel2.SetColumnSpan(this.Button1, 2);
             this.Button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.Button1.Location = new System.Drawing.Point(10, 51);
+            this.Button1.Location = new System.Drawing.Point(10, 10);
             this.Button1.Margin = new System.Windows.Forms.Padding(10);
             this.Button1.Name = "Button1";
             this.tableLayoutPanel2.SetRowSpan(this.Button1, 2);
@@ -124,7 +128,7 @@
             this.tableLayoutPanel2.SetColumnSpan(this.Button2, 2);
             this.Button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.Button2.Location = new System.Drawing.Point(10, 133);
+            this.Button2.Location = new System.Drawing.Point(10, 174);
             this.Button2.Margin = new System.Windows.Forms.Padding(10);
             this.Button2.Name = "Button2";
             this.tableLayoutPanel2.SetRowSpan(this.Button2, 2);
@@ -139,11 +143,11 @@
             this.tableLayoutPanel2.SetColumnSpan(this.Button3, 2);
             this.Button3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.Button3.Location = new System.Drawing.Point(10, 215);
+            this.Button3.Location = new System.Drawing.Point(10, 256);
             this.Button3.Margin = new System.Windows.Forms.Padding(10);
             this.Button3.Name = "Button3";
             this.tableLayoutPanel2.SetRowSpan(this.Button3, 2);
-            this.Button3.Size = new System.Drawing.Size(466, 62);
+            this.Button3.Size = new System.Drawing.Size(466, 63);
             this.Button3.TabIndex = 2;
             this.Button3.Text = "Log Out";
             this.Button3.UseVisualStyleBackColor = true;
@@ -193,14 +197,14 @@
             // ToolStripMenuItem1
             // 
             this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
-            this.ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.ToolStripMenuItem1.Size = new System.Drawing.Size(148, 22);
             this.ToolStripMenuItem1.Text = "SpiceWorks";
             this.ToolStripMenuItem1.Click += new System.EventHandler(this.ToolStripMenuItem1_Click);
             // 
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.ExitToolStripMenuItem.Text = "Exit";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click_1);
             // 
@@ -216,9 +220,24 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // button4
+            // 
+            this.tableLayoutPanel2.SetColumnSpan(this.button4, 2);
+            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.button4.Location = new System.Drawing.Point(10, 92);
+            this.button4.Margin = new System.Windows.Forms.Padding(10);
+            this.button4.Name = "button4";
+            this.tableLayoutPanel2.SetRowSpan(this.button4, 2);
+            this.button4.Size = new System.Drawing.Size(466, 62);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "Device Management";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // MainMenu
             // 
@@ -263,5 +282,6 @@
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Button button4;
     }
 }
