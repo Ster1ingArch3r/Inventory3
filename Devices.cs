@@ -436,23 +436,34 @@ namespace TCIS_Inventory3
                                 label24.Text = reader.GetValue(10).ToString();
                                 string image = reader.GetValue(11).ToString();
                                 var request = WebRequest.Create(image);
-                                using(var response = request.GetResponse())
-                                    using(var stream = response.GetResponseStream())
+                                using (var response = request.GetResponse())
                                 {
-                                    pictureBox1.Image = Bitmap.FromStream(stream);
+                                    using (var stream = response.GetResponseStream())
+                                    {
+
+                                        pictureBox1.Image = Bitmap.FromStream(stream);
+                                        response.Close();
+                                        response.Dispose();
+                                     
+                                        
+                                    }
+                                    
+                                    
+                                    
                                 }
                                 
                                 
                             }
                         }
-                    }
-                conn.Close();
+                    }conn.Close(); conn.Dispose();
+
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Oops", "Fire", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            
         }
         private void button3_Click(object sender, EventArgs e)
         {
