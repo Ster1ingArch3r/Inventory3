@@ -23,50 +23,57 @@ namespace TCIS_Inventory3
 
         private void eyeDee(string c)
         {
-            string checkID = "SELECT * FROM devices WHERE id LIKE @ID;";
-            using (MySqlConnection IDConn = new MySqlConnection(connection))
+            try
             {
-                IDConn.Open();
-                using(MySqlCommand cmd = new MySqlCommand(checkID, IDConn))
+                string checkID = "SELECT * FROM devices WHERE id LIKE @ID;";
+                using (MySqlConnection IDConn = new MySqlConnection(connection))
                 {
-                    cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(c));
-                    cmd.Prepare();
-                    
-                    using(MySqlDataReader reader = cmd.ExecuteReader())
+                    IDConn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(checkID, IDConn))
                     {
-                        if (reader.HasRows)
+                        cmd.Parameters.AddWithValue("@ID", Convert.ToInt32(c));
+                        cmd.Prepare();
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            using(MySqlConnection getID = new MySqlConnection(connection))
+                            if (reader.HasRows)
                             {
-                                getID.Open();
-                                string IDGrab = "SELECT * FROM devices where id = @ID;";
-                                using(MySqlCommand cmdc = new MySqlCommand(IDGrab, getID))
+                                using (MySqlConnection getID = new MySqlConnection(connection))
                                 {
-                                    cmdc.Parameters.AddWithValue("@ID", Convert.ToInt32(c));
-                                    cmdc.Prepare();
-                                    using (MySqlDataReader reader2 = cmdc.ExecuteReader())
+                                    getID.Open();
+                                    string IDGrab = "SELECT * FROM devices where id = @ID;";
+                                    using (MySqlCommand cmdc = new MySqlCommand(IDGrab, getID))
                                     {
-                                        dataGridView1.Rows.Clear();
-                                        while (reader2.Read())
+                                        cmdc.Parameters.AddWithValue("@ID", Convert.ToInt32(c));
+                                        cmdc.Prepare();
+                                        using (MySqlDataReader reader2 = cmdc.ExecuteReader())
                                         {
-                                            dataGridView1.Rows.Add(new object[]
+                                            dataGridView1.Rows.Clear();
+                                            while (reader2.Read())
                                             {
+                                                dataGridView1.Rows.Add(new object[]
+                                                {
                                                 reader2.GetString(0),
                                                 reader2.GetString(1),
                                                 reader2.GetString(8),
                                                 reader2.GetString(7)
-                                            });
+                                                });
+                                            }
                                         }
-                                    } 
+                                    }
                                 }
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("There are no Items.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            else
+                            {
+                                MessageBox.Show("There are no Items.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("That isn't a valid ID number. Try Again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
         private void manufact(string c)
@@ -119,50 +126,57 @@ namespace TCIS_Inventory3
         }
         private void Asset_Tag(string c)
         {
-            string checkAT = "SELECT * FROM devices WHERE asset_tag LIKE @AT;";
-            using (MySqlConnection atConn = new MySqlConnection(connection))
+            try
             {
-                atConn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(checkAT, atConn))
+                string checkAT = "SELECT * FROM devices WHERE asset_tag LIKE @AT;";
+                using (MySqlConnection atConn = new MySqlConnection(connection))
                 {
-                    cmd.Parameters.AddWithValue("@AT", Convert.ToInt32(c));
-                    cmd.Prepare();
-
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    atConn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(checkAT, atConn))
                     {
-                        if (reader.HasRows)
+                        cmd.Parameters.AddWithValue("@AT", Convert.ToInt32(c));
+                        cmd.Prepare();
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            using (MySqlConnection at = new MySqlConnection(connection))
+                            if (reader.HasRows)
                             {
-                                at.Open();
-                                string atGrab = "SELECT * FROM devices where asset_tag = @AT;";
-                                using (MySqlCommand cmdat = new MySqlCommand(atGrab, at))
+                                using (MySqlConnection at = new MySqlConnection(connection))
                                 {
-                                    cmdat.Parameters.AddWithValue("@AT", Convert.ToInt32(c));
-                                    cmdat.Prepare();
-                                    using (MySqlDataReader reader2 = cmdat.ExecuteReader())
+                                    at.Open();
+                                    string atGrab = "SELECT * FROM devices where asset_tag = @AT;";
+                                    using (MySqlCommand cmdat = new MySqlCommand(atGrab, at))
                                     {
-                                        dataGridView1.Rows.Clear();
-                                        while (reader2.Read())
+                                        cmdat.Parameters.AddWithValue("@AT", Convert.ToInt32(c));
+                                        cmdat.Prepare();
+                                        using (MySqlDataReader reader2 = cmdat.ExecuteReader())
                                         {
-                                            dataGridView1.Rows.Add(new object[]
+                                            dataGridView1.Rows.Clear();
+                                            while (reader2.Read())
                                             {
+                                                dataGridView1.Rows.Add(new object[]
+                                                {
                                                 reader2.GetString(0),
                                                 reader2.GetString(1),
                                                 reader2.GetString(8),
                                                 reader2.GetString(7)
-                                            });
+                                                });
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
-                        else
-                        {
-                            MessageBox.Show("There are no Items.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            else
+                            {
+                                MessageBox.Show("There are no Items.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Please Enter a valid asset tag number", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
         private void Serial(string c)
@@ -263,8 +277,6 @@ namespace TCIS_Inventory3
                         }
                         conn.Close();
                     }
-
-
                 }
             }
             catch (MySqlException x)
@@ -345,9 +357,103 @@ namespace TCIS_Inventory3
 
         private void button2_Click(object sender, EventArgs e)
         {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connection))
+                {
+                    string mysql = "INSERT INTO devices(manufacturer, information, device_type, purchase_price, mac_address, model, serial_number, asset_tag, Location, date_added, image_src) VALUES(" +
+                        "@manufacturer, @information, @device_type, @purchase_price, @mac_address, @model, @serial_number, @asset_tag,@location, @date_added, @image_src);";
+                    conn.Open();
+                    using (MySqlCommand deviceInsert = new MySqlCommand(mysql, conn))
+                    {
+                        deviceInsert.Parameters.AddWithValue("@manufacturer", textBox2.Text);
+                        deviceInsert.Parameters.AddWithValue("@information", textBox3.Text);
+                        deviceInsert.Parameters.AddWithValue("@device_type", textBox4.Text);
+                        deviceInsert.Parameters.AddWithValue("@purchase_price", Convert.ToDouble(textBox5.Text));
+                        deviceInsert.Parameters.AddWithValue("@mac_address", textBox6.Text);
+                        deviceInsert.Parameters.AddWithValue("@model", textBox7.Text);
+                        deviceInsert.Parameters.AddWithValue("@serial_number", textBox8.Text);
+                        deviceInsert.Parameters.AddWithValue("@asset_tag", textBox9.Text);
+                        deviceInsert.Parameters.AddWithValue("@location", textBox10.Text);
+                        deviceInsert.Parameters.AddWithValue("@date_added", textBox11.Text);
+                        deviceInsert.Parameters.AddWithValue("@image_src", textBox12.Text);
+                        deviceInsert.Prepare();
+                        deviceInsert.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                    string message = "Device Added Successfully!";
+                    MessageBox.Show(message, "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    textBox2.Text = "";
+                    textBox3.Text = "";
+                    textBox4.Text = "";
+                    textBox5.Text = "";
+                    textBox6.Text = "";
+                    textBox7.Text = "";
+                    textBox8.Text = "";
+                    textBox9.Text = "";
+                    textBox10.Text = "";
+                    textBox11.Text = "";
+                    textBox12.Text = "";
+                }
+            }
+            catch(MySqlException MSE)
+            {
+                string errorMsg = MSE.Message;
+                MessageBox.Show(errorMsg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int id = Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value);
+                string getDevice = "SELECT * FROM devices WHERE id = @id;";
+
+                using (MySqlConnection conn = new MySqlConnection(connection))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(getDevice, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+                        cmd.Prepare();
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                label15.Text = reader.GetValue(1).ToString();
+                                label16.Text = reader.GetValue(2).ToString();
+                                label17.Text = reader.GetValue(3).ToString();
+                                label18.Text = reader.GetValue(4).ToString();
+                                label19.Text = reader.GetValue(5).ToString();
+                                label20.Text = reader.GetValue(6).ToString();
+                                label21.Text = reader.GetValue(7).ToString();
+                                label22.Text = reader.GetValue(8).ToString();
+                                label23.Text = reader.GetValue(9).ToString();
+                                label24.Text = reader.GetValue(10).ToString();
+                                string image = reader.GetValue(11).ToString();
+                                var request = WebRequest.Create(image);
+                                using(var response = request.GetResponse())
+                                    using(var stream = response.GetResponseStream())
+                                {
+                                    pictureBox1.Image = Bitmap.FromStream(stream);
+                                }
+                                
+                                
+                            }
+                        }
+                    }
+                conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Oops", "Fire", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
