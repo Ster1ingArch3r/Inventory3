@@ -366,17 +366,17 @@ namespace TCIS_Inventory3
                     conn.Open();
                     using (MySqlCommand deviceInsert = new MySqlCommand(mysql, conn))
                     {
-                        deviceInsert.Parameters.AddWithValue("@manufacturer", textBox2.Text);
-                        deviceInsert.Parameters.AddWithValue("@information", textBox3.Text);
-                        deviceInsert.Parameters.AddWithValue("@device_type", textBox4.Text);
-                        deviceInsert.Parameters.AddWithValue("@purchase_price", Convert.ToDouble(textBox5.Text));
-                        deviceInsert.Parameters.AddWithValue("@mac_address", textBox6.Text);
-                        deviceInsert.Parameters.AddWithValue("@model", textBox7.Text);
-                        deviceInsert.Parameters.AddWithValue("@serial_number", textBox8.Text);
-                        deviceInsert.Parameters.AddWithValue("@asset_tag", textBox9.Text);
-                        deviceInsert.Parameters.AddWithValue("@location", textBox10.Text);
-                        deviceInsert.Parameters.AddWithValue("@date_added", textBox11.Text);
-                        deviceInsert.Parameters.AddWithValue("@image_src", textBox12.Text);
+                        deviceInsert.Parameters.AddWithValue("@manufacturer", textBox2.Text.Trim());
+                        deviceInsert.Parameters.AddWithValue("@information", textBox3.Text.Trim());
+                        deviceInsert.Parameters.AddWithValue("@device_type", textBox4.Text.Trim());
+                        deviceInsert.Parameters.AddWithValue("@purchase_price", Convert.ToDouble(textBox5.Text.Trim()));
+                        deviceInsert.Parameters.AddWithValue("@mac_address", textBox6.Text.Trim());
+                        deviceInsert.Parameters.AddWithValue("@model", textBox7.Text.Trim());
+                        deviceInsert.Parameters.AddWithValue("@serial_number", textBox8.Text.Trim());
+                        deviceInsert.Parameters.AddWithValue("@asset_tag", textBox9.Text.Trim());
+                        deviceInsert.Parameters.AddWithValue("@location", textBox10.Text.Trim());
+                        deviceInsert.Parameters.AddWithValue("@date_added", textBox11.Text.Trim());
+                        deviceInsert.Parameters.AddWithValue("@image_src", textBox12.Text.Trim());
                         deviceInsert.Prepare();
                         deviceInsert.ExecuteNonQuery();
                     }

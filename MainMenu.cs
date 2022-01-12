@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace TCIS_Inventory3
 {
@@ -61,11 +62,34 @@ namespace TCIS_Inventory3
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            Hide();
-            Audit audit = new Audit(sql);
-            audit.ShowDialog();
-            audit = null;
-            Show();
+            using(MySqlConnection conn = new MySqlConnection(sql))
+            {
+                conn.Open();
+                string priviledgeChk = "SELECT CURRENT_USER();";
+                using(MySqlCommand cmd = new MySqlCommand(priviledgeChk, conn))
+                {
+                    using(MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string loggedInUser = reader.GetString(0);
+                            if(loggedInUser != "Auditor@%")
+                            {
+                                MessageBox.Show("You do not have permission to access this menu.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                            else
+                            {
+                                Hide();
+                                Audit audit = new Audit(sql);
+                                audit.ShowDialog();
+                                audit = null;
+                                Show();
+                            }
+                        }    
+                    }                    
+                }
+                conn.Close();
+            }            
         }
 
         private void button4_Click(object sender, EventArgs e)

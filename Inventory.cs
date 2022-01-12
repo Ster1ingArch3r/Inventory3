@@ -20,29 +20,32 @@ namespace TCIS_Inventory3
         {
             dataGridView1.Rows.Clear();
             try
-            {
-                MySqlConnection conn = new MySqlConnection(connection);
-                conn.Open();
-                string show = "Select * from inventory;";
-                MySqlCommand cmd1 = new MySqlCommand(show, conn);
-                MySqlDataReader read = cmd1.ExecuteReader();
-                while (read.Read())
+            {   string show = "Select * from inventory;";
+                using(MySqlConnection conn = new MySqlConnection(connection))
                 {
-                    dataGridView1.Rows.Add(new object[]
+                    conn.Open();
+                    using(MySqlCommand cmd = new MySqlCommand(show, conn))
                     {
-                        read.GetValue(0),
-                        read.GetValue(1),
-                        read.GetValue(2),
-                        read.GetValue(3),
-                        read.GetValue(4),
-                        read.GetValue(5),
-                        read.GetValue(6),
-                        read.GetValue(7)
-                    });
-
+                        using(MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                dataGridView1.Rows.Add(new object[]
+                                {
+                                    reader.GetValue(0),
+                                    reader.GetValue(1),
+                                    reader.GetValue(2),
+                                    reader.GetValue(3),
+                                    reader.GetValue(4),
+                                    reader.GetValue(5),
+                                    reader.GetValue(6),
+                                    reader.GetValue(7)
+                                });
+                            }
+                        }
+                    }
+                    conn.Close();
                 }
-
-                conn.Close();
             }
             catch (MySqlException ex)
             {
@@ -133,7 +136,7 @@ namespace TCIS_Inventory3
             var result = MessageBox.Show(message3, title2, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.No)
             {
-
+                //Do Nothing
             }
             else
             {

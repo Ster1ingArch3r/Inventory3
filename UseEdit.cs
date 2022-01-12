@@ -113,21 +113,30 @@ namespace TCIS_Inventory3
                 cmd.ExecuteNonQuery();
                 conn.Close();
 
+                
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        
         }
         
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                UpdateItem();
-                LogEdit();
-                MessageBox.Show("Inventory Updated!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                if (textBox7.Text == "" || textBox6.Text == "" || textBox8.Text == "")
+                {
+                    MessageBox.Show("Please ensure that ALL User Info Fields are filled out.", "Holup", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
+                else
+                {
+                    UpdateItem();
+                    LogEdit();
+                    MessageBox.Show("Inventory Updated!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
             }
             catch (Exception ex)
             {
