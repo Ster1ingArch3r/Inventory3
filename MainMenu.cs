@@ -11,7 +11,7 @@ namespace TCIS_Inventory3
         {
             InitializeComponent();
             sql = a;
-            //MessageBox.Show(a);
+            //MessageBox.Show(a); For testing do not display in production
         }
 
         private void Button3_Click(object sender, EventArgs e)
@@ -33,11 +33,36 @@ namespace TCIS_Inventory3
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Hide();
-            Inventory inventory = new Inventory(sql);
-            inventory.ShowDialog();
-            inventory = null;
-            Show();
+            using (MySqlConnection conn = new MySqlConnection(sql))
+            {
+                conn.Open();
+                string priviledgeChk = "SELECT CURRENT_USER();";
+                using (MySqlCommand cmd = new MySqlCommand(priviledgeChk, conn))
+                {
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string loggedInUser = reader.GetString(0);
+                            if (loggedInUser == "Auditor@%")
+                            {
+                                MessageBox.Show("You do not have permission to access this menu.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            }
+                            else
+                            {
+                                Hide();
+                                Inventory inventory = new Inventory(sql);
+                                inventory.ShowDialog();
+                                inventory = null;
+                                Show();
+                            }
+                        }
+                    }
+                }
+                conn.Close();   
+                conn.Dispose();
+            }
+
         }
 
         private void ExitToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -73,17 +98,18 @@ namespace TCIS_Inventory3
                         if (reader.Read())
                         {
                             string loggedInUser = reader.GetString(0);
-                            if(loggedInUser != "Auditor@%")
-                            {
-                                MessageBox.Show("You do not have permission to access this menu.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            }
-                            else
+                            if(loggedInUser == "Auditor@%")
                             {
                                 Hide();
                                 Audit audit = new Audit(sql);
                                 audit.ShowDialog();
                                 audit = null;
                                 Show();
+                            }
+                            else
+                            {
+                                
+                                MessageBox.Show("You do not have permission to access this menu.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             }
                         }    
                     }                    

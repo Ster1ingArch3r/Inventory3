@@ -95,7 +95,7 @@ namespace TCIS_Inventory3
                         }
                     }
                 } 
-                string show2 = "Select * from test_audit.inventory;";
+                string show2 = "Select * from inventory;";
                 using(MySqlCommand command = new MySqlCommand(show2, conn))
                 {
                     using(MySqlDataReader reader = command.ExecuteReader())
