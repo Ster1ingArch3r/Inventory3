@@ -1,7 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Net;
+using System.Text;
 using System.Windows.Forms;
 
 namespace TCIS_Inventory3
@@ -14,7 +16,96 @@ namespace TCIS_Inventory3
             InitializeComponent();
             connection = a;
         }
+        private void UpdateItem()
+        {
+            try
+            {
+                int id = Convert.ToInt32(dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value);
+                using(MySqlConnection conn = new MySqlConnection(connection))
+                {
+                    string updoot = "UPDATE devices SET manufacturer = @manufacturer, information = @information, device_type = @device_type, purchase_price = @purchase_price," +
+                        "mac_address = @mac_address, model = @model, serial_number = @serial_number, asset_tag = @asset_tag, location = @location, date_added = @date_added, image_src = @image_src WHERE id = @id;"; 
+                    conn.Open();
+                    using (MySqlCommand deviceUpdate = new MySqlCommand(updoot, conn))
+                    {
+                        deviceUpdate.Parameters.AddWithValue("@manufacturer", textBox13.Text.Trim());
+                        deviceUpdate.Parameters.AddWithValue("@information", textBox14.Text.Trim());
+                        deviceUpdate.Parameters.AddWithValue("@device_type", textBox15.Text.Trim());
+                        deviceUpdate.Parameters.AddWithValue("@purchase_price", Convert.ToDouble(textBox16.Text.Trim()));
+                        deviceUpdate.Parameters.AddWithValue("@mac_address", textBox17.Text.Trim());
+                        deviceUpdate.Parameters.AddWithValue("@model", textBox18.Text.Trim());
+                        deviceUpdate.Parameters.AddWithValue("@serial_number", textBox19.Text.Trim());
+                        deviceUpdate.Parameters.AddWithValue("@asset_tag", textBox20.Text.Trim());
+                        deviceUpdate.Parameters.AddWithValue("@location", textBox21.Text.Trim());
+                        deviceUpdate.Parameters.AddWithValue("@date_added", textBox22.Text.Trim());
+                        deviceUpdate.Parameters.AddWithValue("@image_src", textBox23.Text.Trim());
+                        deviceUpdate.Parameters.AddWithValue("@id", id);
+                        deviceUpdate.Prepare();
+                        deviceUpdate.ExecuteNonQuery();
+                    }
+                    conn.Close();
+                    MessageBox.Show("Device Data Updated", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message, "Sql Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void SaveAsCsv()
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                SaveFileDialog save = new SaveFileDialog();
+                save.Filter = "CSV (*.csv)|*.csv";
+                save.FileName = "Device_List.csv";
+                bool fileError = false;
+                if (save.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(save.FileName))
+                    {
+                        try
+                        {
+                            File.Delete(save.FileName);
+                        }
+                        catch (IOException ex)
+                        {
+                            fileError = true;
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    if (!fileError)
+                    {
+                        try
+                        {
+                            int colCount = dataGridView1.Columns.Count;
+                            string colNames = "";
+                            string[] outputCsv = new string[dataGridView1.Rows.Count + 1];
+                            for (int i = 0; i < colCount; i++)
+                            {
+                                colNames += dataGridView1.Columns[i].HeaderText + ",";
+                            }
+                            outputCsv[0] += colNames;
 
+                            for (int i = 1; (i - 1) < dataGridView1.Rows.Count; i++)
+                            {
+                                for (int j = 0; j < colCount; j++)
+                                {
+                                    outputCsv[i] += dataGridView1.Rows[i - 1].Cells[j].Value + ",";
+                                }
+                            }
+                            File.WriteAllLines(save.FileName, outputCsv, Encoding.UTF8);
+                            MessageBox.Show("Data Exported Successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
+                }
+            }
+        }
         private void eyeDee(string c)
         {
             try
@@ -49,8 +140,16 @@ namespace TCIS_Inventory3
                                                 {
                                                 reader2.GetString(0),
                                                 reader2.GetString(1),
+                                                reader2.GetString(2),
+                                                reader2.GetString(3),
+                                                reader2.GetString(4),
+                                                reader2.GetString(5),
+                                                reader2.GetString(6),
                                                 reader2.GetString(8),
-                                                reader2.GetString(7)
+                                                reader2.GetString(7),
+                                                reader2.GetString(9),
+                                                reader2.GetString(10),
+                                                reader2.GetString(11)
                                                 });
                                             }
                                         }
@@ -102,8 +201,16 @@ namespace TCIS_Inventory3
                                             {
                                                 reader2.GetString(0),
                                                 reader2.GetString(1),
+                                                reader2.GetString(2),
+                                                reader2.GetString(3),
+                                                reader2.GetString(4),
+                                                reader2.GetString(5),
+                                                reader2.GetString(6),
                                                 reader2.GetString(8),
-                                                reader2.GetString(7)
+                                                reader2.GetString(7),
+                                                reader2.GetString(9),
+                                                reader2.GetString(10),
+                                                reader2.GetString(11)
                                             });
                                         }
                                     }
@@ -152,8 +259,16 @@ namespace TCIS_Inventory3
                                                 {
                                                 reader2.GetString(0),
                                                 reader2.GetString(1),
+                                                reader2.GetString(2),
+                                                reader2.GetString(3),
+                                                reader2.GetString(4),
+                                                reader2.GetString(5),
+                                                reader2.GetString(6),
                                                 reader2.GetString(8),
-                                                reader2.GetString(7)
+                                                reader2.GetString(7),
+                                                reader2.GetString(9),
+                                                reader2.GetString(10),
+                                                reader2.GetString(11)
                                                 });
                                             }
                                         }
@@ -205,8 +320,16 @@ namespace TCIS_Inventory3
                                             {
                                                 reader2.GetString(0),
                                                 reader2.GetString(1),
+                                                reader2.GetString(2),
+                                                reader2.GetString(3),
+                                                reader2.GetString(4),
+                                                reader2.GetString(5),
+                                                reader2.GetString(6),
                                                 reader2.GetString(8),
-                                                reader2.GetString(7)
+                                                reader2.GetString(7),
+                                                reader2.GetString(9),
+                                                reader2.GetString(10),
+                                                reader2.GetString(11)
                                             });
                                         }
                                     }
@@ -297,8 +420,16 @@ namespace TCIS_Inventory3
                     {
                     read.GetString(0),
                     read.GetString(1),
+                    read.GetString(2),
+                    read.GetString(3),
+                    read.GetString(4),
+                    read.GetString(5),
+                    read.GetString(6),
                     read.GetString(8),
-                    read.GetString(7)
+                    read.GetString(7),
+                    read.GetString(9),
+                    read.GetString(10),
+                    read.GetString(11)
                     });
                 }
                 conn.Close();
@@ -418,16 +549,18 @@ namespace TCIS_Inventory3
                         {
                             if (reader.Read())
                             {
-                                label15.Text = reader.GetValue(1).ToString();
-                                label16.Text = reader.GetValue(2).ToString();
-                                label17.Text = reader.GetValue(3).ToString();
-                                label18.Text = reader.GetValue(4).ToString();
-                                label19.Text = reader.GetValue(5).ToString();
-                                label20.Text = reader.GetValue(6).ToString();
-                                label21.Text = reader.GetValue(7).ToString();
-                                label22.Text = reader.GetValue(8).ToString();
-                                label23.Text = reader.GetValue(9).ToString();
-                                label24.Text = reader.GetValue(10).ToString();
+                                textBox13.Text = reader.GetValue(1).ToString();
+                                textBox14.Text = reader.GetValue(2).ToString();
+                                textBox15.Text = reader.GetValue(3).ToString();
+                                textBox16.Text = reader.GetValue(4).ToString();
+                                textBox17.Text = reader.GetValue(5).ToString();
+                                textBox18.Text = reader.GetValue(6).ToString();
+                                textBox19.Text = reader.GetValue(7).ToString();
+                                textBox20.Text = reader.GetValue(8).ToString();
+                                textBox21.Text = reader.GetValue(9).ToString();
+                                textBox22.Text = reader.GetValue(10).ToString();
+                                textBox23.Text = reader.GetValue(11).ToString();
+
                                 string image = reader.GetValue(11).ToString();
                                 var request = WebRequest.Create(image);
                                 using (var response = request.GetResponse())
@@ -455,6 +588,50 @@ namespace TCIS_Inventory3
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            UpdateItem();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+            //Export to CSV
+            try
+            {
+                MySqlConnection conn = new MySqlConnection(connection);
+                conn.Open();
+                string show = $"Select * from devices;";
+                MySqlCommand cmd1 = new MySqlCommand(show, conn);
+                MySqlDataReader read = cmd1.ExecuteReader();
+
+                while (read.Read())
+                {
+                    dataGridView1.Rows.Add(new object[]
+                    {
+                    read.GetString(0),
+                    read.GetString(1),
+                    read.GetString(2),
+                    read.GetString(3),
+                    read.GetString(4),
+                    read.GetString(5),
+                    read.GetString(6),
+                    read.GetString(8),
+                    read.GetString(7),
+                    read.GetString(9),
+                    read.GetString(10),
+                    read.GetString(11)
+                    });
+                }
+                conn.Close();
+            }
+            catch (MySqlException ex)
+            {
+
+            }
+            SaveAsCsv();
         }
     }
 }
